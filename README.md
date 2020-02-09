@@ -20,4 +20,6 @@ Basic Project YII2 menggunakan template smart admin
 
 ![login](https://user-images.githubusercontent.com/17192766/74104807-1a2e4a00-4b8b-11ea-99b3-ecab0c8d3942.png)
 
+![index](https://user-images.githubusercontent.com/17192766/74104841-6aa5a780-4b8b-11ea-9770-190857b7cd10.png)
+
 
