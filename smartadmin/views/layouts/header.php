@@ -236,7 +236,17 @@ MjctMDc6MDBSxYuPAAAAAElFTkSuQmCC" />
         </ul>
 
         <!-- logout button -->
-        
+        <div id="logout" class="btn-header transparent pull-right">
+                <span>
+                    <?= Html::a('<i class="fa fa-sign-out"></i>', Url::to(['/site/logout']), [
+                        'title' => 'Sign Out',
+                        'data' => [
+                            'method' => 'post',
+                            'confirm' => 'You can improve your security further after logging out by closing this opened browser'
+                        ]
+                    ]); ?>
+                 </span>
+        </div>
         <!-- end logout button -->
 
         <!-- search mobile button (this is hidden till mobile view port) -->

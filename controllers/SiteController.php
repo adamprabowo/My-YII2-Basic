@@ -20,10 +20,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'index', 'change-password'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'index', 'change-password'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -46,6 +46,7 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => 'main_login',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -71,6 +72,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'main_login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

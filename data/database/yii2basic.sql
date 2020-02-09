@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2020 at 10:16 AM
+-- Generation Time: Feb 09, 2020 at 04:13 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -49,6 +49,28 @@ INSERT INTO `incoming_stock` (`id`, `incoming_no`, `po_id`, `date`, `item`, `pri
 (5, '0009/IN-GA/jkt/XII/20', 0, '2020-02-09 00:02:00', 'Komputer', 5000000, 'test123'),
 (6, '0010/IN-GA/jkt/XII/20', 0, '2020-02-09 00:02:00', 'Laptop', 6500000, 'test1234');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `username` varchar(30) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `authKey` varchar(50) DEFAULT NULL,
+  `accessToken` varchar(50) DEFAULT NULL,
+  `role` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id`, `username`, `password`, `authKey`, `accessToken`, `role`) VALUES
+(1, 'admin', 'admin', 'admin-12345', 'admin1234567890zzzz', 'Admin');
+
 --
 -- Indexes for dumped tables
 --
@@ -61,6 +83,12 @@ ALTER TABLE `incoming_stock`
   ADD KEY `fk_incoming_stock_po1_idx` (`po_id`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -69,6 +97,12 @@ ALTER TABLE `incoming_stock`
 --
 ALTER TABLE `incoming_stock`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
