@@ -31,7 +31,7 @@ class IncomingStock extends \yii\db\ActiveRecord
     {
         return [
             [['incoming_no', 'price', 'item'], 'required'],
-            [['po_id', 'price'], 'integer'],
+            [['po_id', 'category_id', 'price'], 'integer'],
             [['date'], 'safe'],
             [['incoming_no', 'po_number'], 'string', 'max' => 45],
             [['item'], 'string', 'max' => 100],
@@ -45,12 +45,29 @@ class IncomingStock extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'category_id' => 'Categoy Barang',
             'incoming_no' => 'Incoming No',
             'po_id' => 'Po ID',
             'date' => 'Date',
-            'item' => 'Barang',
+            'item' => 'Nama Barang',
             'price' => 'Harga',
             'po_number' => 'No PO'
         ];
+    }
+
+    // /**
+    //  * @return \yii\db\ActiveQuery
+    //  */
+    // public function getCategory()
+    // {
+    //     return $this->hasOne(CategoriesStock::className(), ['id' => 'po_id']);
+    // }
+
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(CategoriesStock::className(), ['id' => 'category_id']);
     }
 }

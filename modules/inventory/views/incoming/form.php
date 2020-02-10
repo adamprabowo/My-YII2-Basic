@@ -36,10 +36,21 @@ $url=Url::toRoute(['/inventory/incoming/add']);
         <fieldset>
 
                <section >
-                    <?= $form->field($model,'item') ?>
+                    <!-- <?= $form->field($model,'po_number') ?> -->
+                    
                 </section> 
 
             <div class="row">
+
+                <section class="col col-6">
+                    <?= $form->field($model, 'category_id')->dropDownList($model->category_id==null?[]:[$model->category_id=>$model->category->description],[
+                        'id'=>'selectCat',
+                        'prompt'=>'Select Category'
+                ])?>
+                </section>
+                <section class="col col-6">
+                    <?= $form->field($model,'po_number') ?>
+                </section>
 
                 <section class="col col-6">
                     <?= $form->field($model,'date',['template' => '{label}<label class="input">
@@ -49,7 +60,7 @@ $url=Url::toRoute(['/inventory/incoming/add']);
                     <?= $form->field($model,'incoming_no') ?>
                 </section>
                 <section class="col col-6">
-                    <?= $form->field($model,'po_number') ?>
+                    <?= $form->field($model,'item') ?>
                 </section>
                 <section class="col col-6">
                     <?= $form->field($model,'price') ?>
@@ -95,3 +106,27 @@ $url=Url::toRoute(['/inventory/incoming/add']);
         </div>
     </div>
 <?php
+
+$urlcat=Url::toRoute(['/inventory/incoming/list-category']);
+$jsCode = <<< JS
+
+    $(function () {
+
+        $('#selectCat').select2({
+            placeholder: "Select a Category",
+            width: '100%',
+            ajax:{
+                url:'$urlcat',
+                data:function(params){
+                     var query ={
+                        q:params.term,
+                        type:''
+                    }
+                    return query;
+                }
+            }
+        }); 
+      
+    })
+JS;
+$this->registerJs($jsCode, 4, 'aaa');

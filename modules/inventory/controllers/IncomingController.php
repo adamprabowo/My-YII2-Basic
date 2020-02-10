@@ -61,6 +61,10 @@ class IncomingController extends Controller {
     public function actionView($id)
     {
        $model=$this->findModel($id);
+       // echo '<pre>';
+       // print_r($model);
+       // echo '</pre>';
+       // die();
        return $this->render('view',['model'=>$model]);
     }
     protected function findModel($id)
@@ -71,6 +75,29 @@ class IncomingController extends Controller {
         else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionListCategory()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $q = isset($_GET['q']) ? $_GET['q'] : '';
+        if (isset($_GET['type']))  {
+            $query = \app\modelsDB\CategoriesStock::find();
+            $query->where(['like','id',$_GET['type']]);
+             $query->andWhere("(description like '%$q%')");
+             foreach ($query->all() as $record) {
+                $out[] = [
+                    'id' => $record->id,
+                    'text' => $record->description,
+                ];
+            }
+
+        } 
+
+        return [
+            'results' => $out,
+        ];
     }
 
 

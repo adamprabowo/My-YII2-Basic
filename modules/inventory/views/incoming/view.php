@@ -131,8 +131,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div>
                                         <div class="font-md">
                                             <strong>Item :</strong>
-                                            <span class="pull-right"> <i
-                                                        class="fa fa-calendar"></i> <?= $model->item?> </span>
+                                            <span class="pull-right"> <?= $model->item?> </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="font-md">
+                                            <strong>Categori :</strong>
+                                            <span class="pull-right"> <?= $model->CategoryName?> </span>
                                         </div>
                                     </div>
                                     <div>

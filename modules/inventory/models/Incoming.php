@@ -35,6 +35,16 @@ class Incoming extends IncomingStock
         return $out;
     }
 
+    public function getCategoryName()
+    {
+        if($this->category!==null){
+            $cat=$this->category->description;
+        }else{
+            $cat='';
+        }
+        return $cat;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
